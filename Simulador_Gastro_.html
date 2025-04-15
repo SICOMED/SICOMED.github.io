@@ -1,0 +1,456 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Comparativo Gastro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .header {
+            background-color: #f0f0f0;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header img {
+            height: 80px;
+            margin-right: 20px;
+        }
+
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 80px;
+        }
+
+        .container {
+            width: 48%;
+        }
+
+        .divider {
+            width: 1px;
+            background-color: #ddd;
+            margin: 0 10px;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .category {
+            text-align: center;
+        }
+
+        .image-container {
+            height: 100px;
+            margin: 10px 0;
+        }
+
+        .image-container img {
+            max-height: 100px;
+            display: none;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .contraindications {
+            margin-top: 40px;
+        }
+
+        .contraindications img {
+            max-height: 50px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="Gastro.png" alt="Logo"> <!-- Reemplaza con la ruta de tu logo -->
+        <h1>Simulador Comparativo Gastro</h1>
+    </div>
+
+    <div class="main-content">
+
+        <!-- Contenedor Izquierdo -->
+
+        <div class="container" id="leftContainer">
+            <div class="categories">
+
+	<!-- Lista Desplegable1 Izquierda-->
+
+                <div class="category">
+                    <h3>Gastroprocinético</h3>
+                    <select id="select1-left" onchange="updateTable('left', 1)">
+                        <option value="">Seleccione...</option>
+                        <option value="Libertrim Alfa">Libertrim Alfa</option>
+                        <option value="Lunarium">Lunarium</option>
+                        <option value="Alevian Duo">Alevian Duo</option>
+                        <option value="Arluy Duo">Arluy Duo</option>
+                        <option value="Omuro">Omuro</option>
+                        <option value="Meteospasmyl">Meteospasmyl</option>
+                        <option value="Dimoflax">Dimoflax</option>
+                    </select>
+                    <div class="image-container" id="img1-left"></div>
+                </div>
+
+	<!-- Lista Desplegable2 Izquierda-->
+
+                <div class="category">
+                    <h3>Anti Diarreico</h3>
+                    <select id="select2-left" onchange="updateTable('left', 2)">
+                        <option value="">Seleccione...</option>
+                        <option value="Lact1">Lact1</option>
+                        <option value="Floratil">Floratil</option>
+                        <option value="Proteflor">Proteflor</option>
+			<option value="Lomotil">Lomotil</option>
+                    </select>
+                    <div class="image-container" id="img2-left"></div>
+                </div>
+
+	<!-- Lista Desplegable3 Izquierda-->
+
+                <div class="category">
+                    <h3>Anti Estreñimiento</h3>
+                    <select id="select3-left" onchange="updateTable('left', 3)">
+                        <option value="">Seleccione...</option>
+                        <option value="Metamucil">Metamucil</option>
+                        <option value="Lactulax">Lactulax</option>
+                        <option value="Fibiomet">Fibiomet</option>
+                    </select>
+                    <div class="image-container" id="img3-left"></div>
+                </div>
+            </div>
+
+	<!--Encabezados de la Tabla Izquierda-->
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Síntomas</th>
+                        <th>Alivio Gastroprocinético</th>
+                        <th>Alivio Anti Diarreico</th>
+                        <th>Alivio Anti Estreñimiento</th>
+                    </tr>
+                </thead>
+
+	<!--Sintomas y resto de la tabla Izquietrda-->
+
+                <tbody id="symptomTable-left">
+                    <tr><td>Dolor Abdominal</td><td></td><td></td><td></td></tr>
+                    <tr><td>Inflamación</td><td></td><td></td><td></td></tr>
+                    <tr><td>Estreñimiento</td><td></td><td></td><td></td></tr>
+                    <tr><td>Diarrea</td><td></td><td></td><td></td></tr>
+                    <tr><td>Cólico</td><td></td><td></td><td></td></tr>
+                    <tr><td>Distensión</td><td></td><td></td><td></td></tr>
+                    <tr><td>Flatulencias</td><td></td><td></td><td></td></tr>
+                    <tr><td>Mala Digestión</td><td></td><td></td><td></td></tr>
+                    <tr><td>Gases</td><td></td><td></td><td></td></tr>
+                </tbody>
+            </table>
+
+
+            <!-- Tabla de contraindicaciones izquierda -->
+            <table class="contraindications">
+                <thead>
+                    <tr>
+                        <th>Contraindicación Gastroprocinético</th>
+                        <th>Contraindicación Anti Diarreico</th>
+                        <th>Contraindicación Anti Estreñiomiento</th>
+                    </tr>
+                </thead>
+
+	<!--Genera los id para las cobtraindicaciones de la izquierda-->	
+
+                <tbody>
+                    <tr>
+                        <td id="contra1-left"></td>
+                        <td id="contra2-left"></td>
+                        <td id="contra3-left"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+	<!--Llama la clase de para la linea de division en pantalla-->
+
+        <div class="divider"></div>
+
+        <!-- Contenedor Derecho -->
+
+        <div class="container" id="rightContainer">
+
+	<!--Lista Desplegable1 Derecha-->
+            <div class="categories">
+                <div class="category">
+                    <h3>Gastroprocinético</h3>
+                    <select id="select1-right" onchange="updateTable('right', 1)">
+                        <option value="">Seleccione...</option>
+                        <option value="Libertrim Alfa">Libertrim Alfa</option>
+                        <option value="Lunarium">Lunarium</option>
+                        <option value="Alevian Duo">Alevian Duo</option>
+                        <option value="Arluy Duo">Arluy Duo</option>
+                        <option value="Omuro">Omuro</option>
+                        <option value="Meteospasmyl">Meteospasmyl</option>
+                        <option value="Dimoflax">Dimoflax</option>
+                    </select>
+                    <div class="image-container" id="img1-right"></div>
+                </div>
+
+	<!--Lista Desplegable2 Derecha-->
+                <div class="category">
+                    <h3>Anti Diarreico</h3>
+                    <select id="select2-right" onchange="updateTable('right', 2)">
+                        <option value="">Seleccione...</option>
+                        <option value="Lact1">Lact1</option>
+                        <option value="Floratil">Floratil</option>
+                        <option value="Proteflor">Proteflor</option>
+			<option value="Lomotil">Lomotil</option>
+                    </select>
+                    <div class="image-container" id="img2-right"></div>
+                </div>
+
+	<!--Lista Desplegable3 Derecha-->
+                <div class="category">
+                    <h3>Anti Estreñimiento</h3>
+                    <select id="select3-right" onchange="updateTable('right', 3)">
+                        <option value="">Seleccione...</option>
+                        <option value="Metamucil">Metamucil</option>
+                        <option value="Lactulax">Lactulax</option>
+                        <option value="Fibiomet">Fibiomet</option>
+                    </select>
+                    <div class="image-container" id="img3-right"></div>
+                </div>
+            </div>
+
+	<!--Encabezados Tabla Dercha-->
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Síntomas</th>
+                        <th>Alivio Gastroprocinético</th>
+                        <th>Alivio Anti Diarreico</th>
+                        <th>Alivio Anti Estreñimiento</th>
+                    </tr>
+                </thead>
+
+	<!--Sintomas y resto de la tabla Derecha-->
+
+                <tbody id="symptomTable-right">
+                    <tr><td>Dolor Abdominal</td><td></td><td></td><td></td></tr>
+                    <tr><td>Inflamación</td><td></td><td></td><td></td></tr>
+                    <tr><td>Estreñimiento</td><td></td><td></td><td></td></tr>
+                    <tr><td>Diarrea</td><td></td><td></td><td></td></tr>
+                    <tr><td>Cólico</td><td></td><td></td><td></td></tr>
+                    <tr><td>Distensión</td><td></td><td></td><td></td></tr>
+                    <tr><td>Flatulencias</td><td></td><td></td><td></td></tr>
+                    <tr><td>Mala Digestión</td><td></td><td></td><td></td></tr>
+                    <tr><td>Gases</td><td></td><td></td><td></td></tr>
+                </tbody>
+            </table>
+
+            <!-- Tabla de contraindicaciones derecha -->
+            <table class="contraindications">
+                <thead>
+                    <tr>
+                        <th>Contraindicación Gastroprocinético</th>
+                        <th>Contraindicación Anti Diarreico </th>
+                        <th>Contraindicación Anti Estreñimiento </th>
+                    </tr>
+                </thead>
+
+	<!--Genera los id para las contraindicacionea de la tabla derecha-->
+
+                <tbody>
+                    <tr>
+                        <td id="contra1-right"></td>
+                        <td id="contra2-right"></td>
+                        <td id="contra3-right"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+<img src="componentes.png" alt="Girl in a jacket" width="500" height="300">
+
+    <script>
+        const symptomData = {
+            "Libertrim Alfa": {
+                column: 1,
+                color: "green",
+                symptoms: ["Dolor Abdominal", "Inflamación", "Diarrea", "Cólico", "Distensión", "Flatulencias", "Mala Digestión", "Gases"],
+                contraindication: "contra-libertrim-alfa.png",
+                link: "https://www.medicamentosplm.com/Home/productos/libertrim_alfa_comprimidos/35/101/62475/25"
+            },
+            "Lunarium": {
+                column: 1,
+                color: "orange",
+                symptoms: ["Dolor Abdominal", "Inflamación"],
+                contraindication: "contra-lunarium.png",
+                link: "https://www.medicamentosplm.com/Home/productos/lunarium_capsulas/83/101/57688/14"
+            },
+            "Alevian Duo": {
+                column: 1,
+                color: "yellow",
+                symptoms: ["Dolor Abdominal", "Inflamación", "Diarrea", "Cólico", "Distensión", "Flatulencias", "Gases"],
+                contraindication: "contra-alevian-duo.png",
+                link: "https://www.medicamentosplm.com/Home/productos/alevian_duo_capsulas/2415/101/6202/14"
+            },
+            "Arluy Duo": {
+                column: 1,
+                color: "yellow",
+                symptoms: ["Dolor Abdominal", "Inflamación", "Diarrea", "Cólico", "Distensión", "Flatulencias", "Gases"],
+                contraindication: "contra-arluy-duo.png",
+                link: "https://www.medicamentosplm.com/Home/productos/arluy_duo_capsulas/13/101/79666/14"
+            },
+            "Omuro": {
+                column: 1,
+                color: "orange",
+                symptoms: ["Dolor Abdominal", "Diarrea", "Cólico", "Distensión"],
+                contraindication: "contra-omuro.png",
+                link: "https://www.medicamentosplm.com/Home/productos/omuro_tabletas/160/101/33724/210"
+            },
+            "Meteospasmyl": {
+                column: 1,
+                color: "yellow",
+                symptoms: ["Dolor Abdominal", "Diarrea", "Cólico", "Distensión", "Flatulencias", "Gases"],
+                contraindication: "contra-meteospasmyl.png",
+                link: "https://www.medicamentosplm.com/Home/productos/meteospasmyl_capsulas/92/101/8629/14"
+            },
+            "Dimoflax": {
+                column: 1,
+                color: "yellow",
+                symptoms: ["Dolor Abdominal", "Diarrea", "Cólico", "Distensión", "Flatulencias", "Gases"],
+                contraindication: "contra-dimoflax.png",
+                link: "https://www.medicamentosplm.com/Home/productos/dimoflax_capsulas/67/101/62569/14"
+            },
+            "Lact1": {
+                column: 2,
+                color: "yellow",
+                symptoms: ["Diarrea", "Cólico"],
+                contraindication: "contra-lact1.png",
+                link: "https://www.medicamentosplm.com/Home/productos/lact_1_solucion/35/101/77801/146"
+            },
+            "Floratil": {
+                column: 2,
+                color: "yellow",
+                symptoms: ["Inflamación", "Diarrea"],
+                contraindication: "contra-floratil.png",
+                link: "https://www.medicamentosplm.com/Home/productos/floratil_capsulas/2783/101/58666/14"
+            },
+            "Proteflor": {
+                column: 2,
+                color: "yellow",
+                symptoms: ["Inflamación", "Diarrea"],
+                contraindication: "contra-proteflor.png",
+                link: "https://www.medicamentosplm.com/Home/productos/proteflor_capsulas/170/101/62389/14"
+            },
+	    "Lomotil": {
+                column: 2,
+                color: "orange",
+                symptoms: ["Dolor Abdominal", "Diarrea"],
+                contraindication: "contra-lomotil.png",
+                link: "https://www.medicamentosplm.com/Home/productos/lomotil_tabletas/2502/101/57659/210"
+            },
+            "Metamucil": {
+                column: 3,
+                color: "yellow",
+                symptoms: ["Inflamación", "Estreñimiento"],
+                contraindication: "contra-metamucil.png",
+                link: "https://example.com/metamucil"
+            },
+            "Lactulax": {
+                column: 3,
+                color: "orange",
+                symptoms: ["Inflamación", "Estreñimiento"],
+                contraindication: "contra-lactulax.png",
+                link: "https://www.medicamentosplm.com/Home/productos/lactulax_jarabe/168/63/8311/94"
+            },
+	    "Fibiomet": {
+                column: 3,
+                color: "yellow",
+                symptoms: ["Inflamación", "Estreñimiento"],
+                contraindication: "contra-fibiomet.png",
+                link: "https://www.medicamentosplm.com/Home/productos/fibiomet_polvo/35/101/69999/126"
+            }
+        };
+
+        function updateTable(side, column) {
+            const suffix = side === 'left' ? '-left' : '-right';
+            const tableId = `symptomTable${suffix}`;
+            const cells = document.querySelectorAll(`#${tableId} td`);
+            cells.forEach(cell => cell.style.backgroundColor = '');
+
+            for (let i = 1; i <= 3; i++) {
+                const select = document.getElementById(`select${i}${suffix}`);
+                const imgContainer = document.getElementById(`img${i}${suffix}`);
+                const contraCell = document.getElementById(`contra${i}${suffix}`);
+                const value = select.value;
+
+                imgContainer.innerHTML = '';
+                contraCell.innerHTML = '';
+
+                if (value && value !== '') {
+                    // Imagen del producto
+                    const img = document.createElement('img');
+                    img.src = `${value.toLowerCase().replace(' ', '-')}.png`;
+                    img.alt = value;
+                    img.style.display = 'block';
+                    img.onclick = () => window.open(symptomData[value].link, '_blank');
+                    imgContainer.appendChild(img);
+
+                    // Imagen de contraindicación
+                    if (symptomData[value] && symptomData[value].contraindication) {
+                        const contraImg = document.createElement('img');
+                        contraImg.src = symptomData[value].contraindication;
+                        contraImg.alt = `Contraindicación de ${value}`;
+                        contraImg.onclick = () => window.open(symptomData[value].link, '_blank');
+                        contraCell.appendChild(contraImg);
+                    }
+
+                    // Actualizar tabla de síntomas
+                    if (symptomData[value]) {
+                        const data = symptomData[value];
+                        const rows = document.querySelectorAll(`#${tableId} tr`);
+                        rows.forEach(row => {
+                            const symptom = row.cells[0].textContent;
+                            if (data.symptoms.includes(symptom)) {
+                                row.cells[data.column].style.backgroundColor = data.color;
+                            }
+                        });
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
