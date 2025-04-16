@@ -8,6 +8,9 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 100px 20px 20px 20px;
+	    max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .header {
@@ -15,12 +18,14 @@
             padding: 10px 20px;
             display: flex;
             align-items: center;
+	    justify-content: space-between;
             margin-bottom: 20px;
             width: 100%;
             position: fixed;
             top: 0;
             left: 0;
             z-index: 1000;
+	    box-sizing: border-box;
         }
 
         .header img {
@@ -28,11 +33,18 @@
             margin-right: 20px;
         }
 
+	.header h1 {
+            font-size: 1.5em;
+            margin: 0;
+            flex: 1;
+        }
+
         .section-links {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
+	    margin-top: 20px;
         }
 
         .section {
@@ -58,6 +70,34 @@
         .section a:hover {
             color: #007BFF;
         }
+
+	 /* Estilos responsive */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .header img {
+                height: 60px;
+                margin-bottom: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.2em;
+            }
+
+            .section-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+        }
     </style>
 </head>
 
@@ -76,7 +116,7 @@
             </a>
         </div>
         <div class="section">
-            <a href="snc.html">
+            <a href="Simulador_snc.html">
                 <img src="snc.png" alt="Sistema Nervioso Central">
                 Sistema Nervioso Central (SNC)
             </a>
