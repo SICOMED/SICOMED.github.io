@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Comparativo Respiratorio 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #d3d3d3;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+        header img {
+            height: 80px;
+            margin-right: 10px;
+        }
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .product {
+            width: 45%;
+            text-align: center;
+        }
+        .product label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .product select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        .product img {
+            max-width: 100%;
+            height: 150px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+	.contraindications {
+            margin-top: 40px;
+        }
+
+        .contraindications img {
+            max-height: 50px;
+            cursor: pointer;
+        }
+	@media (max-width: 1024px) {
+        .main-content {
+            flex-direction: column;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="Respi1.png" alt="Logotipo">
+        <h1>Simulador Comparativo Respiratorio1</h1>
+    </header>
+    <div class="container">
+
+        <div class="product-section">
+            <div class="product">
+                <label>Mucolíticos</label>
+                <select id="product1" onchange="updateBenefits()">
+                    <option value="">Seleccione una opción</option>
+                    <option value="Dostein">Dostein</option>
+                    <option value="ACC">ACC</option>
+                    <option value="Lysomucil">Lysomucil</option>
+                    <option value="Sensemoc">Sensemoc</option>
+                </select>
+                <a id="link-product1" href="#" target="_blank">
+                    <img id="img-product1" src="https://via.placeholder.com/150" alt="">
+                </a>
+            </div>
+
+            <div class="product">
+                <label>Antibióticos</label>
+                <select id="product2" onchange="updateBenefits()">
+                    <option value="">Seleccione una opción</option>
+                    <option value="Clavulin">Clavulin</option>
+                    <option value="Ceftrex">Ceftrex</option>
+                </select>
+                <a id="link-product2" href="#" target="_blank">
+                    <img id="img-product2" src="https://via.placeholder.com/150" alt="">
+                </a>
+            </div>
+
+	    <div class="product">
+                <label>Antigripal</label>
+                <select id="product3" onchange="updateBenefits()">
+                    <option value="">Seleccione una opción</option>
+                    <option value="LM6">LM6</option>
+                    <option value="Desenfriol">Desenfriol D</option>
+                </select>
+                <a id="link-product3" href="#" target="_blank">
+                    <img id="img-product3" src="https://via.placeholder.com/150" alt="">
+                </a>
+            </div>
+
+	    <div class="product">
+                <label>Corticoesteroide</label>
+                <select id="product4" onchange="updateBenefits()">
+                    <option value="">Seleccione una opción</option>
+                    <option value="Alin">Alin</option>
+                </select>
+                <a id="link-product4" href="#" target="_blank">
+                    <img id="img-product4" src="https://via.placeholder.com/150" alt="">
+                </a>
+            </div>
+
+	   
+            <div class="product">
+                <label>Mucolíticos</label>
+                <select id="product5" onchange="updateBenefits()">
+                    <option value="">Seleccione una opción</option>
+                    <option value="Dostein">Dostein</option>
+                    <option value="ACC">ACC</option>
+                    <option value="Lysomucil">Lysomucil</option>
+                    <option value="Sensemoc">Sensemoc</option>
+                </select>
+                <a id="link-product5" href="#" target="_blank">
+                    <img id="img-product5" src="https://via.placeholder.com/150" alt="">
+                </a>
+            </div>
+
+	    <div class="product">
+                <label>Antibióticos</label>
+                <select id="product6" onchange="updateBenefits()">
+                    <option value="">Seleccione una opción</option>
+                    <option value="Clavulin">Clavulin</option>
+                    <option value="Ceftrex">Ceftrex</option>
+                </select>
+                <a id="link-product6" href="#" target="_blank">
+                    <img id="img-product6" src="https://via.placeholder.com/150" alt="">
+                </a>
+            </div>
+
+	    <div class="product">
+                <label>Antigripal</label>
+                <select id="product7" onchange="updateBenefits()">
+                    <option value="">Seleccione una opción</option>
+                    <option value="LM6">LM6</option>
+                    <option value="Desenfriol">Desenfriol D</option>
+                </select>
+                <a id="link-product7" href="#" target="_blank">
+                    <img id="img-product7" src="https://via.placeholder.com/150" alt="">
+                </a>
+            </div>
+
+	    <div class="product">
+                <label>Corticoesteroide</label>
+                <select id="product8" onchange="updateBenefits()">
+                    <option value="">Seleccione una opción</option>
+                    <option value="Alin">Alin</option>
+                </select>
+                <a id="link-product8" href="#" target="_blank">
+                    <img id="img-product8" src="https://via.placeholder.com/150" alt="">
+                </a>
+            </div>
+     </div>
+
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Sintomas</th>
+                    <th>Mucolítico</th>
+                    <th>Antibiótico</th>
+		    <th>Antigripal</th>
+		    <th>Corticoesteroide</th>
+		    <th>Sintomas</th>
+		    <th>Mucolítico</th>
+                    <th>Antibiótico</th>
+		    <th>Antigripal</th>
+		    <th>Corticoesteroide</th>	
+                </tr>
+            </thead>
+            <tbody id="benefits-table">
+                <tr><td>Tos</td><td id="p1-Tos"></td><td id="p2-Tos"></td><td id="p3-Tos"></td><td id="p4-Tos"></td><td>Tos</td><td id="p5-Tos"></td><td id="p6-Tos"></td><td id="p7-Tos"></td><td id="p8-Tos"></td></tr>
+		<tr><td>Hipersecreción</td><td id="p1-Hipersecreción"></td><td id="p2-Hipersecreción"></td><td id="p3-Hipersecreción"></td><td id="p4-Hipersecreción"></td><td>Hipersecreción</td><td id="p5-Hipersecreción"></td><td id="p6-Hipersecreción"></td><td id="p7-Hipersecreción"></td><td id="p8-Hipersecreción"></td></tr>
+ 		<tr><td>Esputo</td><td id="p1-Esputo"></td><td id="p2-Esputo"></td><td id="p3-Esputo"></td><td id="p4-Esputo"></td><td>Esputo</td><td id="p5-Esputo"></td><td id="p6-Esputo"></td><td id="p7-Esputo"></td><td id="p8-Esputo"></td></tr>
+		<tr><td>Fiebre</td><td id="p1-Fiebre"></td><td id="p2-Fiebre"></td><td id="p3-Fiebre"></td><td id="p4-Fiebre"></td><td>Fiebre</td><td id="p5-Fiebre"></td><td id="p6-Fiebre"></td><td id="p7-Fiebre"></td><td id="p8-Fiebre"></td></tr>
+		<tr><td>Mialgias</td><td id="p1-Mialgias"></td><td id="p2-Mialgias"></td><td id="p3-Mialgias"></td><td id="p4-Mialgias"></td><td>Mialgias</td><td id="p5-Mialgias"></td><td id="p6-Mialgias"></td><td id="p7-Mialgias"></td><td id="p8-Mialgias"></td></tr>
+		<tr><td>Artralgias</td><td id="p1-Artralgias"></td><td id="p2-Artralgias"></td><td id="p3-Artralgias"></td><td id="p4-Artralgias"></td><td>Artralgias</td><td id="p5-Artralgias"></td><td id="p6-Artralgias"></td><td id="p7-Artralgias"></td><td id="p8-Artralgias"></td></tr>
+		<tr><td>Sibilancias</td><td id="p1-Sibilancias"></td><td id="p2-Sibilancias"></td><td id="p3-Sibilancias"></td><td id="p4-Sibilancias"></td><td>Sibilancias</td><td id="p5-Sibilancias"></td><td id="p6-Sibilancias"></td><td id="p7-Sibilancias"></td><td id="p8-Sibilancias"></td></tr>
+		<tr><td>Estertores</td><td id="p1-Estertores"></td><td id="p2-Estertores"></td><td id="p3-Estertores"></td><td id="p4-Estertores"></td><td>Estertores</td><td id="p5-Estertores"></td><td id="p6-Estertores"></td><td id="p7-Estertores"></td><td id="p8-Estertores"></td></tr>
+		<tr><td>Rinorrea</td><td id="p1-Rinorrea"></td><td id="p2-Rinorrea"></td><td id="p3-Rinorrea"></td><td id="p4-Rinorrea"></td><td>Rinorrea</td><td id="p5-Rinorrea"></td><td id="p6-Rinorrea"></td><td id="p7-Rinorrea"></td><td id="p8-Rinorrea"></td></tr>
+		<tr><td>Congestión nasal</td><td id="p1-Congestión nasal"></td><td id="p2-Congestión nasal"></td><td id="p3-Congestión nasal"></td><td id="p4-Congestión nasal"></td><td>Congestión nasal</td><td id="p5-Congestión nasal"></td><td id="p6-Congestión nasal"></td><td id="p7-Congestión nasal"></td><td id="p8-Congestión nasal"></td></tr>
+            </tbody>
+        </table>
+
+<!-- Tabla de contraindicaciones -->
+            <table class="contraindications">
+                <thead>
+                    <tr>
+                        <th>Contraindicación Mucolítico</th>
+                        <th>Contraindicación Antibiótico</th>
+                        <th>Contraindicación Antigripal</th>
+			<th>Contraindicación Corticoesteroide</th>
+			<th>Contraindicación Mucolítico</th>
+                        <th>Contraindicación Antibiótico</th>
+                        <th>Contraindicación Antigripal</th>
+			<th>Contraindicación Corticoesteroide</th>
+                    </tr>
+                </thead>
+
+<!--Genera los id para las cobtraindicaciones-->	
+
+                <tbody>
+                    <tr>
+                        <td id="contra1"></td>
+                        <td id="contra2"></td>
+                        <td id="contra3"></td>
+			<td id="contra4"></td>
+			<td id="contra5"></td>
+			<td id="contra6"></td>
+			<td id="contra7"></td>
+			<td id="contra8"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+    </div>
+
+
+
+
+
+    <script>
+        const benefitsConfig = {
+            Dostein: {
+                green: ["Tos", "Hipersecreción", "Esputo", "Sibilancias", "Estertores"],
+		contra1: "contra-dostein.png"
+            },
+	    ACC: {
+		yellow: ["Tos", "Hipersecreción", "Esputo", "Sibilancias", "Estertores"]
+            },
+	    Lysomucil: {
+		yellow: ["Tos", "Hipersecreción", "Esputo", "Sibilancias", "Estertores"]
+            },
+	        Sensemoc: {
+		yellow: ["Tos", "Hipersecreción", "Esputo", "Sibilancias", "Estertores"]
+	    },
+	    Clavulin: {
+		green: ["Esputo", "Fiebre"],
+		yellow: ["Tos", "Hipersecreción", "Mialgias", "Artralgias", "Sibilancias", "Estertores"]
+	    },
+	    Ceftrex: {
+		yellow: ["Hipersecreción", "Mialgias", "Artralgias"],
+		green: ["Tos", "Esputo", "Fiebre", "Sibilancias", "Estertores"]
+	    },
+	    LM6: {
+		yellow: ["Fiebre", "Mialgias", "Artralgias"],
+		green: ["Rinorrea", "Congestión nasal"]
+	    },
+	    Desenfriol: {
+		yellow: ["Fiebre", "Mialgias", "Artralgias", "Rinorrea", "Congestión nasal"]
+	    },
+	    Alin: {
+                green: ["Tos", "Sibilancias", "Estertores"],
+		yellow: ["Hipersecreción", "Esputo"]
+            }
+        };
+
+        const images = {
+            Dostein: "dostein.png",
+	    ACC: "ACC.png",
+	    Lysomucil: "lysomucil.png",
+	    Sensemoc: "sensemoc.png",
+	    Clavulin: "clavulin.png",
+	    Ceftrex: "ceftrex.png",
+	    LM6: "LM6.png",
+	    Desenfriol: "desenfriol.png",
+	    Alin: "alin.png"  
+        };
+
+        const links = {
+            Dostein: "https://www.medicamentosplm.com/Home/productos/dostein_capsulas/35/101/7388/14",
+            ACC: "https://www.medicamentosplm.com/Home/productos/acc_tabletas_efervescentes/159/101/6088/218",
+            Lysomucil: "https://www.medicamentosplm.com/Home/productos/lysomucil_granulado/42/101/36846/81",
+            Sensemoc: "https://www.medicamentosplm.com/Home/productos/sensemoc_solucion/170/101/60753/146",
+	    Clavulin: "https://www.medicamentosplm.com/Home/productos/clavulin_suspension/160/101/6952/194",
+	    Ceftrex: "https://www.medicamentosplm.com/Home/productos/ceftrex_i.m._solucion_inyectable/170/101/36776/162",
+	    LM6: "https://www.medicamentosplm.com/Home/productos/lm6_comprimidos/35/101/8430/25",
+	    Desenfriol: "https://www.medicamentosplm.com/Home",
+	    Alin: "https://www.medicamentosplm.com/Home/productos/alin_solucion/36/101/6212/146"
+        };
+
+        function updateBenefits() {
+            const product1 = document.getElementById("product1").value;
+            const product2 = document.getElementById("product2").value;
+	    const product3 = document.getElementById("product3").value;
+	    const product4 = document.getElementById("product4").value;
+	    const product5 = document.getElementById("product5").value;
+	    const product6 = document.getElementById("product6").value;
+	    const product7 = document.getElementById("product7").value;
+	    const product8 = document.getElementById("product8").value;	
+
+            document.getElementById("img-product1").src = images[product1] || "https://via.placeholder.com/150";
+            document.getElementById("img-product2").src = images[product2] || "https://via.placeholder.com/150";
+	    document.getElementById("img-product3").src = images[product3] || "https://via.placeholder.com/150";
+	    document.getElementById("img-product4").src = images[product4] || "https://via.placeholder.com/150";
+	    document.getElementById("img-product5").src = images[product5] || "https://via.placeholder.com/150";
+	    document.getElementById("img-product6").src = images[product6] || "https://via.placeholder.com/150";
+	    document.getElementById("img-product7").src = images[product7] || "https://via.placeholder.com/150";
+	    document.getElementById("img-product8").src = images[product8] || "https://via.placeholder.com/150";
+
+            document.getElementById("link-product1").href = links[product1] || "#";
+            document.getElementById("link-product2").href = links[product2] || "#";
+	    document.getElementById("link-product3").href = links[product3] || "#";
+	    document.getElementById("link-product4").href = links[product4] || "#";
+	    document.getElementById("link-product5").href = links[product5] || "#";
+	    document.getElementById("link-product6").href = links[product6] || "#";
+	    document.getElementById("link-product7").href = links[product7] || "#";
+	    document.getElementById("link-product8").href = links[product8] || "#";
+
+            const benefits = ["Tos", "Hipersecreción", "Esputo", "Fiebre", "Mialgias", "Artralgias", "Sibilancias", "Estertores", "Rinorrea", "Congestión nasal"];
+            benefits.forEach(benefit => {
+                document.getElementById(`p1-${benefit}`).style.backgroundColor = "";
+                document.getElementById(`p2-${benefit}`).style.backgroundColor = "";
+		document.getElementById(`p3-${benefit}`).style.backgroundColor = "";
+		document.getElementById(`p4-${benefit}`).style.backgroundColor = "";
+		document.getElementById(`p5-${benefit}`).style.backgroundColor = "";
+		document.getElementById(`p6-${benefit}`).style.backgroundColor = "";
+		document.getElementById(`p7-${benefit}`).style.backgroundColor = "";
+		document.getElementById(`p8-${benefit}`).style.backgroundColor = "";
+            });
+
+            if (product1 && benefitsConfig[product1]) {
+                for (let color in benefitsConfig[product1]) {
+                    benefitsConfig[product1][color].forEach(benefit => {
+                        document.getElementById(`p1-${benefit}`).style.backgroundColor = color;
+                    });
+                }
+            }
+
+            if (product2 && benefitsConfig[product2]) {
+                for (let color in benefitsConfig[product2]) {
+                    benefitsConfig[product2][color].forEach(benefit => {
+                        document.getElementById(`p2-${benefit}`).style.backgroundColor = color;
+                    });
+                }
+            }
+
+	    if (product3 && benefitsConfig[product3]) {
+                for (let color in benefitsConfig[product3]) {
+                    benefitsConfig[product3][color].forEach(benefit => {
+                        document.getElementById(`p3-${benefit}`).style.backgroundColor = color;
+                    });
+                }
+            }
+
+	    if (product4 && benefitsConfig[product4]) {
+                for (let color in benefitsConfig[product4]) {
+                    benefitsConfig[product4][color].forEach(benefit => {
+                        document.getElementById(`p4-${benefit}`).style.backgroundColor = color;
+                    });
+                }
+            }
+
+	    if (product5 && benefitsConfig[product5]) {
+                for (let color in benefitsConfig[product5]) {
+                    benefitsConfig[product5][color].forEach(benefit => {
+                        document.getElementById(`p5-${benefit}`).style.backgroundColor = color;
+                    });
+                }
+            }
+
+	    if (product6 && benefitsConfig[product6]) {
+                for (let color in benefitsConfig[product6]) {
+                    benefitsConfig[product6][color].forEach(benefit => {
+                        document.getElementById(`p6-${benefit}`).style.backgroundColor = color;
+                    });
+                }
+            }
+
+	    if (product7 && benefitsConfig[product7]) {
+                for (let color in benefitsConfig[product7]) {
+                    benefitsConfig[product7][color].forEach(benefit => {
+                        document.getElementById(`p7-${benefit}`).style.backgroundColor = color;
+                    });
+                }
+            }
+
+	    if (product8 && benefitsConfig[product8]) {
+                for (let color in benefitsConfig[product8]) {
+                    benefitsConfig[product8][color].forEach(benefit => {
+                        document.getElementById(`p8-${benefit}`).style.backgroundColor = color;
+                    });
+                }
+            }
+
+
+        }
+    </script>
+</body>
+</html>
