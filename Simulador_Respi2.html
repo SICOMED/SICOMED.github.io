@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Comparativo Respiratorio 2</title>
+
+    <script>
+        function solicitarContraseña() {
+            const pwd = ["respi2", "letipret"];
+            const intento = prompt("Ingrese la contraseña para acceder:");
+            if (pwd.includes(intento)) {
+                alert("Acceso concedido.");
+            } else {
+                alert("Contraseña incorrecta. Acceso denegado.");
+                window.location.href = "index.html";
+            }
+        }
+
+        window.onload = solicitarContraseña;
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #d3d3d3;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+        header img {
+            height: 80px;
+            margin-right: 10px;
+        }
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .product {
+            width: 23%;
+            text-align: center;
+        }
+        .divider {
+            width: 2%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .divider-line {
+            width: 2px;
+            height: 100%;
+            background-color: #ddd;
+        }
+        .product label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .product select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        .product img {
+            max-width: 100%;
+            height: 150px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .contraindications {
+            margin-top: 40px;
+        }
+        .contraindications img {
+            max-height: 50px;
+            cursor: pointer;
+        }
+        @media (max-width: 1024px) {
+            .main-content {
+                flex-direction: column;
+                margin-top: 100px;
+            }
+            .product-section {
+                flex-wrap: wrap;
+            }
+            .product {
+                width: 48%;
+                margin-bottom: 20px;
+            }
+            .divider {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="Respi2.png" alt="Logotipo">
+        <h1>Simulador Comparativo Respiratorio2</h1>
+    </header>
+
+    <div class="container">
+        <div class="product-section">
+            <div class="product">
+                <label>Fitofármacos</label>
+                <select id="product1" onchange="updateBenefits(); updateContraindications()">
+                    <option value="">Seleccione una opción</option>
+                    <option value="Letipret">Letipret</option>
+                    <option value="Panotos">Panoto S</option>
+                    <option value="Umckaloabo">Umckaloabo</option>
+                </select>
+                <a id="link-product1" href="#" target="_blank">
+                    <img id="img-product1" src="https://via.placeholder.com/150" alt="">
+                </a>
+            </div>
+
+            <div class="product">
+                <label>Antigripales</label>
+                <select id="product2" onchange="updateBenefits(); updateContraindications()">
+                    <option value="">Seleccione una opción</option>
+                    <option value="LM6">LM6</option>
+                    <option value="Sensibitd">Sensibit D</option>
+                    <option value="Antifludes">Antiflu Des</option>
+                </select>
+                <a id="link-product2" href="#" target="_blank">
+                    <img id="img-product2" src="https://via.placeholder.com/150" alt="">
+                </a>
+            </div>
+
+            <div class="divider">
+                <div class="divider-line"></div>
+            </div>
+
+            <div class="product">
+                <label>Fitofármacos</label>
+                <select id="product4" onchange="updateBenefits(); updateContraindications()">
+                    <option value="">Seleccione una opción</option>
+                    <option value="Letipret">Letipret</option>
+                    <option value="Panotos">Panoto S</option>
+                    <option value="Umckaloabo">Umckaloabo</option>
+                </select>
+                <a id="link-product4" href="#" target="_blank">
+                    <img id="img-product4" src="https://via.placeholder.com/150" alt="">
+                </a>
+            </div>
+
+            <div class="product">
+                <label>Antigripales</label>
+                <select id="product5" onchange="updateBenefits(); updateContraindications()">
+                    <option value="">Seleccione una opción</option>
+                    <option value="LM6">LM6</option>
+                    <option value="Sensibitd">Sensibit D</option>
+                    <option value="Antifludes">Antiflu Des</option>
+                </select>
+                <a id="link-product5" href="#" target="_blank">
+                    <img id="img-product5" src="https://via.placeholder.com/150" alt="">
+                </a>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Sintomas</th>
+                    <th>Fitofármacos</th>
+                    <th>Antigripales</th>
+		    <th></th>
+                    <th>Fitofármacos</th>
+                    <th>Antigripales</th>
+                </tr>
+            </thead>
+            <tbody id="benefits-table">
+                <tr><td>Escurrimiento nasal</td><td id="p1-Escurrimiento nasal"></td><td id="p2-Escurrimiento nasal"></td><td bgcolor="#f2f2f2"></td><td id="p4-Escurrimiento nasal"></td><td id="p5-Escurrimiento nasal"></td></tr>
+                <tr><td>Congestión nasal</td><td id="p1-Congestión nasal"></td><td id="p2-Congestión nasal"></td><td bgcolor="#f2f2f2"></td><td id="p4-Congestión nasal"></td><td id="p5-Congestión nasal"></td></tr>
+                <tr><td>Estornudos</td><td id="p1-Estornudos"></td><td id="p2-Estornudos"></td><td bgcolor="#f2f2f2"></td><td id="p4-Estornudos"></td><td id="p5-Estornudos"></td></tr>
+                <tr><td>Dolor de garganta</td><td id="p1-Dolor de garganta"></td><td id="p2-Dolor de garganta"></td><td bgcolor="#f2f2f2"></td><td id="p4-Dolor de garganta"></td><td id="p5-Dolor de garganta"></td></tr>
+                <tr><td>Tos productiva</td><td id="p1-Tos productiva"></td><td id="p2-Tos productiva"></td><td bgcolor="#f2f2f2"></td><td id="p4-Tos productiva"></td><td id="p5-Tos productiva"></td></tr>
+                <tr><td>Tos seca</td><td id="p1-Tos seca"></td><td id="p2-Tos seca"></td><td bgcolor="#f2f2f2"></td><td id="p4-Tos seca"></td><td id="p5-Tos seca"></td></tr>
+                <tr><td>Dolor de cabeza</td><td id="p1-Dolor de cabeza"></td><td id="p2-Dolor de cabeza"></td><td bgcolor="#f2f2f2"></td><td id="p4-Dolor de cabeza"></td><td id="p5-Dolor de cabeza"></td></tr>
+                <tr><td>Fiebre</td><td id="p1-Fiebre"></td><td id="p2-Fiebre"></td><td bgcolor="#f2f2f2"></td><td id="p4-Fiebre"></td><td id="p5-Fiebre"></td></tr>
+                <tr><td>Malestar general</td><td id="p1-Malestar general"></td><td id="p2-Malestar general"></td><td bgcolor="#f2f2f2"></td><td id="p4-Malestar general"></td><td id="p5-Malestar general"></td></tr>
+            </tbody>
+        </table>
+
+        <table class="contraindications">
+            <thead>
+                <tr>
+                    <th>Contraindicación Fitofármacos</th>
+                    <th>Contraindicación Antigripales</th>
+                    <th></th>
+                    <th>Contraindicación Fitofármacos</th>
+                    <th>Contraindicación Antigripales</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="contra1"></td>
+                    <td id="contra2"></td>
+                    <td bgcolor="#f2f2f2"></td>
+                    <td id="contra4"></td>
+                    <td id="contra5"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <img src="componentes-respi2.png" alt="Componentes" width="500" height="300" style="display: block; margin: auto;">
+
+    <script>
+        const benefitsConfig = {
+            Letipret: {
+                green: ["Tos productiva", "Tos seca", "Malestar general"]
+            },
+            Panotos: {
+                yellow: ["Tos productiva", "Tos seca"]
+            },
+            Umckaloabo: {
+                orange: ["Escurrimiento nasal", "Congestión nasal", "Estornudos", "Tos productiva", "Tos seca"],
+                yellow: ["Malestar general"]
+            },
+            LM6: {
+                green: ["Escurrimiento nasal", "Congestión nasal", "Estornudos", "Dolor de garganta", "Dolor de cabeza", "Fiebre", "Malestar general"]
+            },
+            Sensibitd: {
+                green: ["Fiebre"],
+                yellow: ["Escurrimiento nasal", "Congestión nasal", "Estornudos", "Dolor de garganta", "Dolor de cabeza", "Malestar general"]
+            },
+            Antifludes: {
+                green: ["Fiebre"],
+                yellow: ["Escurrimiento nasal", "Estornudos", "Dolor de garganta", "Dolor de cabeza", "Malestar general"]
+            }
+        };
+
+        const images = {
+            Letipret: "letipret.png",
+            Panotos: "panotos.png",
+            Umckaloabo: "umckaloabo.png",
+            LM6: "LM6.png",
+            Sensibitd: "sensibitd.png",
+            Antifludes: "antifludes.png"
+        };
+
+        const links = {
+            Letipret: "https://www.medicamentosplm.com/Home/productos/letipret_jarabe/35/101/77911/94",
+            Panotos: "https://www.medicamentosplm.com/Home/productos/panoto_s_jarabe/170/101/9178/94",
+            Umckaloabo: "https://www.medicamentosplm.com/Home/productos/umckaloabo_jarabe/2943/101/71151/94",
+            LM6: "https://www.medicamentosplm.com/Home/productos/lm6_comprimidos/35/101/8430/25",
+            Sensibitd: "https://www.medicamentosplm.com/Home/productos/sensibit_d_jarabe_infantil/103/101/9713/97",
+            Antifludes: "https://www.medicamentosplm.com/Home/productos/antiflu-des_capsulas/36/101/6341/14"
+        };
+
+        function updateBenefits() {
+            const product1 = document.getElementById("product1").value;
+            const product2 = document.getElementById("product2").value;
+            const product4 = document.getElementById("product4").value;
+            const product5 = document.getElementById("product5").value;
+
+            // Actualizar imágenes
+            document.getElementById("img-product1").src = product1 ? images[product1] : "https://via.placeholder.com/150";
+            document.getElementById("img-product2").src = product2 ? images[product2] : "https://via.placeholder.com/150";
+            document.getElementById("img-product4").src = product4 ? images[product4] : "https://via.placeholder.com/150";
+            document.getElementById("img-product5").src = product5 ? images[product5] : "https://via.placeholder.com/150";
+
+            // Actualizar enlaces
+            document.getElementById("link-product1").href = product1 ? links[product1] : "#";
+            document.getElementById("link-product2").href = product2 ? links[product2] : "#";
+            document.getElementById("link-product4").href = product4 ? links[product4] : "#";
+            document.getElementById("link-product5").href = product5 ? links[product5] : "#";
+
+            // Limpiar colores de la tabla
+            const benefits = ["Escurrimiento nasal", "Congestión nasal", "Estornudos", "Dolor de garganta", "Tos productiva", "Tos seca", "Dolor de cabeza", "Fiebre", "Malestar general"];
+            benefits.forEach(benefit => {
+                document.getElementById(`p1-${benefit}`).style.backgroundColor = "";
+                document.getElementById(`p2-${benefit}`).style.backgroundColor = "";
+                document.getElementById(`p4-${benefit}`).style.backgroundColor = "";
+                document.getElementById(`p5-${benefit}`).style.backgroundColor = "";
+            });
+
+            // Actualizar colores para product1
+            if (product1 && benefitsConfig[product1]) {
+                for (let color in benefitsConfig[product1]) {
+                    benefitsConfig[product1][color].forEach(benefit => {
+                        document.getElementById(`p1-${benefit}`).style.backgroundColor = color;
+                    });
+                }
+            }
+
+            // Actualizar colores para product2
+            if (product2 && benefitsConfig[product2]) {
+                for (let color in benefitsConfig[product2]) {
+                    benefitsConfig[product2][color].forEach(benefit => {
+                        document.getElementById(`p2-${benefit}`).style.backgroundColor = color;
+                    });
+                }
+            }
+
+            // Actualizar colores para product4
+            if (product4 && benefitsConfig[product4]) {
+                for (let color in benefitsConfig[product4]) {
+                    benefitsConfig[product4][color].forEach(benefit => {
+                        document.getElementById(`p4-${benefit}`).style.backgroundColor = color;
+                    });
+                }
+            }
+
+            // Actualizar colores para product5
+            if (product5 && benefitsConfig[product5]) {
+                for (let color in benefitsConfig[product5]) {
+                    benefitsConfig[product5][color].forEach(benefit => {
+                        document.getElementById(`p5-${benefit}`).style.backgroundColor = color;
+                    });
+                }
+            }
+        }
+
+        const contraindications = {
+            Letipret: "contra-letipret.png",
+            Panotos: "contra-panotos.png",
+            Umckaloabo: "contra-umckaloabo.png",
+            LM6: "contra-LM6.png",
+            Sensibitd: "contra-sensibitd.png",
+            Antifludes: "contra-antifludes.png"
+        };
+
+        function updateContraindications() {
+            // Actualizar contraindicaciones para product1
+            const product1 = document.getElementById("product1").value;
+            const contraCell1 = document.getElementById("contra1");
+            contraCell1.innerHTML = "";
+            if (product1 && contraindications[product1]) {
+                const contraImg1 = document.createElement("img");
+                contraImg1.src = contraindications[product1];
+                contraImg1.alt = `Contraindicación de ${product1}`;
+                contraCell1.appendChild(contraImg1);
+            }
+
+            // Actualizar contraindicaciones para product2
+            const product2 = document.getElementById("product2").value;
+            const contraCell2 = document.getElementById("contra2");
+            contraCell2.innerHTML = "";
+            if (product2 && contraindications[product2]) {
+                const contraImg2 = document.createElement("img");
+                contraImg2.src = contraindications[product2];
+                contraImg2.alt = `Contraindicación de ${product2}`;
+                contraCell2.appendChild(contraImg2);
+            }
+
+            // Actualizar contraindicaciones para product4
+            const product4 = document.getElementById("product4").value;
+            const contraCell4 = document.getElementById("contra4");
+            contraCell4.innerHTML = "";
+            if (product4 && contraindications[product4]) {
+                const contraImg4 = document.createElement("img");
+                contraImg4.src = contraindications[product4];
+                contraImg4.alt = `Contraindicación de ${product4}`;
+                contraCell4.appendChild(contraImg4);
+            }
+
+            // Actualizar contraindicaciones para product5
+            const product5 = document.getElementById("product5").value;
+            const contraCell5 = document.getElementById("contra5");
+            contraCell5.innerHTML = "";
+            if (product5 && contraindications[product5]) {
+                const contraImg5 = document.createElement("img");
+                contraImg5.src = contraindications[product5];
+                contraImg5.alt = `Contraindicación de ${product5}`;
+                contraCell5.appendChild(contraImg5);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -3,6 +3,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador Comparativo Gastro</title>
+
+
+ <script>
+    function solicitarContraseña() {
+      const pwd = ["gastro", "alfa"]; // aqui la contraseña
+      const intento = prompt("Ingrese la contraseña para acceder:");
+
+      if (pwd.includes (intento)) {
+        alert("Acceso concedido.");
+      } else {
+        alert("Contraseña incorrecta. Acceso denegado.");
+         window.location.href = "index.html";
+      }
+    }
+
+    // Ejecuta la función al cargar la página
+    window.onload = solicitarContraseña;
+  </script>
+
+
+
     <style>
         body {
             font-family: Arial, sans-serif;

@@ -4,6 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador Comparativo Respiratorio 1</title>
+
+<script>
+    function solicitarContraseña() {
+      const pwd = ["respi", "dostein"]; // aqui la contraseña
+      const intento = prompt("Ingrese la contraseña para acceder:");
+
+      if (pwd.includes (intento)) {
+        alert("Acceso concedido.");
+      } else {
+        alert("Contraseña incorrecta. Acceso denegado.");
+         window.location.href = "index.html";
+      }
+    }
+
+    // Ejecuta la función al cargar la página
+    window.onload = solicitarContraseña;
+  </script>
+
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -38,6 +57,17 @@
             width: 45%;
             text-align: center;
         }
+	.divider {
+            width: 2%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .divider-line {
+            width: 2px;
+            height: 100%;
+            background-color: #ddd;
+	}
         .product label {
             font-weight: bold;
             display: block;
@@ -138,6 +168,10 @@
                 </a>
             </div>
 
+	   <div class="divider">
+                <div class="divider-line"></div>
+            </div>
+
             <div class="product">
                 <label>Mucolíticos</label>
                 <select id="product5" onchange="updateBenefits(); updateContraindications()">
@@ -195,7 +229,7 @@
                     <th>Mucolítico</th>
                     <th>Antibiótico</th>
                     <th>Antigripal</th>
-                    <th>Corticoesteroide</th>
+                    <th>Corticoesteroide</th>		
                     <th>Sintomas</th>
                     <th>Mucolítico</th>
                     <th>Antibiótico</th>
@@ -224,6 +258,7 @@
                     <th>Contraindicación Antibiótico</th>
                     <th>Contraindicación Antigripal</th>
                     <th>Contraindicación Corticoesteroide</th>
+		    <th></th>
                     <th>Contraindicación Mucolítico</th>
                     <th>Contraindicación Antibiótico</th>
                     <th>Contraindicación Antigripal</th>
@@ -236,6 +271,7 @@
                     <td id="contra2"></td>
                     <td id="contra3"></td>
                     <td id="contra4"></td>
+		    <td bgcolor="#f2f2f2"></td>
                     <td id="contra5"></td>
                     <td id="contra6"></td>
                     <td id="contra7"></td>
