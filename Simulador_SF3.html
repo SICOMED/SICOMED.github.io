@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Comparativo SF3</title>
+
+<script>
+    function solicitarContraseña() {
+      const pwd = [
+"Gsierra123**",
+"sf3",
+"sf3_14*",
+"sf3_632**",
+"sf3_988//",
+"sf3_277..",
+"sf3_509#",
+"sf3_710$",
+"sf3_507??",
+"sf3_82_",
+"sf3_467-",
+"sf3_251x"
+]; // aqui la contraseña
+      const intento = prompt("Ingrese la contraseña para acceder:");
+
+      if (pwd.includes (intento)) {
+        alert("Acceso concedido.");
+      } else {
+        alert("Contraseña incorrecta. Acceso denegado.");
+         window.location.href = "index.html";
+      }
+    }
+
+    // Ejecuta la función al cargar la página
+    window.onload = solicitarContraseña;
+  </script>
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #d3d3d3;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+        header img {
+            height: 80px;
+            margin-right: 10px;
+        }
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .product {
+            width: 45%;
+            text-align: center;
+        }
+	.divider {
+            width: 2%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .divider-line {
+            width: 2px;
+            height: 100%;
+            background-color: #ddd;
+	}
+        .product label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .product select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        .product img {
+            max-width: 100%;
+            height: 200px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .contraindications {
+            margin-top: 40px;
+        }
+        .contraindications img {
+            max-height: 150px;
+            cursor: pointer;
+        }
+        @media (max-width: 1024px) {
+            .main-content {
+                flex-direction: column;
+                margin-top: 100px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="SF3.png" alt="Logotipo">
+        <h1>Simulador Comparativo Salud Femenina 3</h1>
+    </header>
+    <div class="container">
+
+        <div class="product-section">
+            <div class="product">
+                <label>Producto1</label>
+                <select id="product1" onchange="updateBenefits(); updateContraindications()">
+                    <option value="">Seleccione una opción</option>
+                    <option value="Acicran">Acicran Mix</option>
+                    <option value="Cistexel">Cistexel</option>
+                </select>
+                <a id="link-product1" href="#" target="_blank">
+                    <img id="img-product1" src="https://via.placeholder.com/150" alt="">
+                </a>
+            </div>
+
+
+	   <div class="divider">
+                <div class="divider-line"></div>
+            </div>
+
+            <div class="product">
+                <label>Producto2</label>
+                <select id="product2" onchange="updateBenefits(); updateContraindications()">
+                    <option value="">Seleccione una opción</option>
+                    <option value="Acicran">Acicran Mix</option>
+		    <option value="Cistexel">Cistexel</option>
+                </select>
+                <a id="link-product2" href="#" target="_blank">
+                    <img id="img-product2" src="https://via.placeholder.com/150" alt="">
+                </a>
+            </div>
+
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Beneficios</th>
+                    <th>Producto 1</th>		
+                    <th>Beneficios</th>
+                    <th>Producto 2</th>	
+                </tr>
+            </thead>
+            <tbody id="benefits-table">
+                <tr><td>Restablece la flora</td><td id="p1-Restablece_la_flora"></td><td>Restablece la flora</td><td id="p2-Restablece_la_flora"></td></tr>
+		<tr><td>Produce sustancias anti microbianas</td><td id="p1-Produce_sustancias_anti_microbianas"></td><td>Produce sustancias anti microbianas</td><td id="p2-Produce_sustancias_anti_microbianas"></td></tr>
+		<tr><td> Refuerza la inmunidad de mucosas urinarias</td><td id="p1-Refuerza_la_inmunidad_de_mucosas_urinarias"></td><td> Refuerza la inmunidad de mucosas urinarias</td><td id="p2-Refuerza_la_inmunidad_de_mucosas_urinarias"></td></tr>
+		<tr><td>Mayor aporte de PAC</td><td id="p1-Mayor_aporte_de_PAC"></td><td>Mayor aporte de PAC</td><td id="p2-Mayor_aporte_de_PAC"></td></tr>
+		<tr><td>Ayuda a mantener el PH vaginal</td><td id="p1-Ayuda_a_mantener_el_PH_vaginal"></td><td>Ayuda a mantener el PH vaginal</td><td id="p2-Ayuda_a_mantener_el_PH_vaginal"></td></tr>
+            </tbody>
+        </table>
+
+        <table class="contraindications">
+            <thead>
+                <tr>
+                    <th>Contraindicación Producto 1</th>
+		    <th></th>
+                    <th>Contraindicación Producto 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="contra1"></td>
+		    <td bgcolor="#f2f2f2"></td>
+                    <td id="contra2"></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+<img src="colores-nivel.png" alt="Girl in a jacket" width="700" height="300" style="display: block; margin: auto;">
+
+
+    <script>
+        const benefitsConfig = {
+            Acicran: {
+                green: ["Restablece_la_flora", "Produce_sustancias_anti_microbianas","Mayor_aporte_de_PAC", "Ayuda_a_mantener_el_PH_vaginal"],
+		blue: ["Refuerza_la_inmunidad_de_mucosas_urinarias"]
+            },
+            Cistexel: {
+                yellow: ["Mayor_aporte_de_PAC"],
+		red: ["Restablece_la_flora", "Produce_sustancias_anti_microbianas", "Ayuda_a_mantener_el_PH_vaginal"]
+            }
+        };
+
+        const images = {
+            Acicran: "acicran.png",
+            Cistexel: "cistexel.png"  
+        };
+
+        const links = {
+            Acicran: "https://www.medicamentosplm.com/Home/productos/acicran_mix_polvo/35/101/77752/126",
+            Cistexel: "https://www.medicamentosplm.com/Home/productos/cistexel_sobres/2877/101/80066/144"
+        };
+
+        function updateBenefits() {
+            const product1 = document.getElementById("product1").value;
+            const product2 = document.getElementById("product2").value;	
+
+            document.getElementById("img-product1").src = images[product1] || "https://via.placeholder.com/150";
+            document.getElementById("img-product2").src = images[product2] || "https://via.placeholder.com/150";
+
+            document.getElementById("link-product1").href = links[product1] || "#";
+            document.getElementById("link-product2").href = links[product2] || "#";
+            
+            const benefits = ["Restablece_la_flora", "Produce_sustancias_anti_microbianas", "Refuerza_la_inmunidad_de_mucosas_urinarias", "Mayor_aporte_de_PAC", "Ayuda_a_mantener_el_PH_vaginal"];
+            benefits.forEach(benefit => {
+                document.getElementById(`p1-${benefit}`).style.backgroundColor = "";
+                document.getElementById(`p2-${benefit}`).style.backgroundColor = "";
+                
+            });
+
+            if (product1 && benefitsConfig[product1]) {
+                for (let color in benefitsConfig[product1]) {
+                    benefitsConfig[product1][color].forEach(benefit => {
+                        document.getElementById(`p1-${benefit}`).style.backgroundColor = color;
+                    });
+                }
+            }
+
+            if (product2 && benefitsConfig[product2]) {
+                for (let color in benefitsConfig[product2]) {
+                    benefitsConfig[product2][color].forEach(benefit => {
+                        document.getElementById(`p2-${benefit}`).style.backgroundColor = color;
+                    });
+                }
+            }
+
+        }
+    </script>
+
+    <script>
+        const contraindications = {
+            Acicran: "contra-acicran.png",
+            Cistexel: "contra-cistexel.png"
+        };
+
+        function updateContraindications() {
+            // Handle Producto1 (product1, contra1)
+            const product1 = document.getElementById("product1").value;
+            const contraCell1 = document.getElementById("contra1");
+
+            // Clear previous content for contra1
+            contraCell1.innerHTML = "";
+
+            // If a product is selected and has a contraindication image, display it
+            if (product1 && contraindications[product1]) {
+                const contraImg1 = document.createElement("img");
+                contraImg1.src = contraindications[product1];
+                contraImg1.alt = `Contraindicación de ${product1}`;
+                contraCell1.appendChild(contraImg1);
+            }
+
+            // Handle Producto2 (product2, contra2)
+            const product2 = document.getElementById("product2").value;
+            const contraCell2 = document.getElementById("contra2");
+
+            // Clear previous content for contra2
+            contraCell2.innerHTML = "";
+
+            // If a product is selected and has a contraindication image, display it
+            if (product2 && contraindications[product2]) {
+                const contraImg2 = document.createElement("img");
+                contraImg2.src = contraindications[product2];
+                contraImg2.alt = `Contraindicación de ${product2}`;
+                contraCell2.appendChild(contraImg2);
+            }
+
+        }
+    </script>
+
+</body>
+</html>

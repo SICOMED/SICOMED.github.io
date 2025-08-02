@@ -7,7 +7,19 @@
 
  <script>
     function solicitarContraseña() {
-      const pwd = ["gastro", "alfa"]; // aqui la contraseña
+      const pwd = [
+"Gsierra123**",
+"gastro",
+"Gastro94*",
+"Gastro622**",
+"Gastro556//",
+"Gastro183..",
+"Gastro23#",
+"Gastro159$",
+"Gastro468??",
+"Gastro172_",
+"Gastro525-",
+"Gastro745x"]; // aqui la contraseña
       const intento = prompt("Ingrese la contraseña para acceder:");
 
       if (pwd.includes (intento)) {
@@ -81,7 +93,7 @@
         }
 
         .image-container img {
-            max-height: 100px;
+            max-height: 120px;
             display: none;
             cursor: pointer;
         }
@@ -107,7 +119,7 @@
         }
 
         .contraindications img {
-            max-height: 50px;
+            max-height: 75px;
             cursor: pointer;
         }
 
@@ -169,9 +181,9 @@
                     <h3>Anti Estreñimiento</h3>
                     <select id="select3-left" onchange="updateTable('left', 3)">
                         <option value="">Seleccione...</option>
+			<option value="Fibiomet">Fibiomet</option>
                         <option value="Metamucil">Metamucil</option>
                         <option value="Lactulax">Lactulax</option>
-                        <option value="Fibiomet">Fibiomet</option>
                     </select>
                     <div class="image-container" id="img3-left"></div>
                 </div>
@@ -270,9 +282,9 @@
                     <h3>Anti Estreñimiento</h3>
                     <select id="select3-right" onchange="updateTable('right', 3)">
                         <option value="">Seleccione...</option>
+			<option value="Fibiomet">Fibiomet</option>
                         <option value="Metamucil">Metamucil</option>
-                        <option value="Lactulax">Lactulax</option>
-                        <option value="Fibiomet">Fibiomet</option>
+                        <option value="Lactulax">Lactulax</option>                    
                     </select>
                     <div class="image-container" id="img3-right"></div>
                 </div>
@@ -414,7 +426,7 @@
                 color: "yellow",
                 symptoms: ["Inflamación", "Estreñimiento"],
                 contraindication: "contra-metamucil.png",
-                link: "https://example.com/metamucil"
+                link: "https://www.medicamentosplm.com/chile/Home/productos/metamucil.polvo/2622/101/50193/126"
             },
             "Lactulax": {
                 column: 3,

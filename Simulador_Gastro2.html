@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simulador Comparativo Gastro 2</title>
+
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; }
+    header { background-color:#d3d3d3; padding:10px; display:flex; align-items:center; }
+    header img { height:80px; margin-right:10px; }
+    header h1 { font-size:24px; margin:0; }
+    .container { padding:20px; max-width:1200px; margin:0 auto; }
+    .product-section { display:flex; justify-content:space-between; margin-bottom:20px; }
+    .product { width:45%; text-align:center; }
+    .divider { width:2%; display:flex; align-items:center; justify-content:center; }
+    .divider-line { width:2px; height:100%; background-color:#ddd; }
+    .product label { font-weight:bold; display:block; margin-bottom:10px; }
+    .product select { width:100%; padding:8px; margin-bottom:10px; }
+    .product img { max-width:100%; height:200px; }
+    table { width:100%; border-collapse:collapse; margin-top:20px; }
+    th, td { border:1px solid #ddd; padding:8px; text-align:center; }
+    th { background-color:#f2f2f2; }
+    .contraindications { margin-top:40px; }
+    .contraindications img { max-height:150px; cursor:pointer; }
+    @media (max-width:1024px){ .main-content{ flex-direction:column; margin-top:100px; } }
+  </style>
+
+</head>
+<body onload="solicitarContraseña();">
+
+  <header>
+    <img src="Gastro2.png" alt="Logotipo"/>
+    <h1>Simulador Comparativo Gastro 2</h1>
+  </header>
+
+  <div class="container">
+
+    <div class="product-section">
+      <div class="product">
+        <label>Producto 1</label>
+        <select id="product1" onchange="updateBenefits(); updateContraindications();">
+          <option value="">Seleccione una opción</option>
+          <option value="Kicab">Ki‑Cab</option>
+          <option value="Dexivant">Dexivant</option>
+          <option value="Nexiummups">Nexium Mups</option>
+          <option value="Abcito">ABCito</option>
+        </select>
+        <a id="link-product1" href="#" target="_blank">
+          <img id="img-product1" src="https://via.placeholder.com/150" alt=""/>
+        </a>
+      </div>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+      </div>
+
+      <div class="product">
+        <label>Producto 2</label>
+        <select id="product2" onchange="updateBenefits(); updateContraindications();">
+          <option value="">Seleccione una opción</option>
+          <option value="Kicab">Ki‑Cab</option>
+          <option value="Dexivant">Dexivant</option>
+          <option value="Nexiummups">Nexium Mups</option>
+          <option value="Abcito">ABCito</option>
+        </select>
+        <a id="link-product2" href="#" target="_blank">
+          <img id="img-product2" src="https://via.placeholder.com/150" alt=""/>
+        </a>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Síntomas / Beneficios</th><th>Producto 1</th><th>Síntomas / Beneficios</th><th>Producto 2</th>
+        </tr>
+      </thead>
+      <tbody id="benefits-table">
+        <tr><td>ERGE</td><td id="p1-ERGE"></td><td>ERGE</td><td id="p2-ERGE"></td></tr>
+        <tr><td>ERNE</td><td id="p1-ERNE"></td><td>ERNE</td><td id="p2-ERNE"></td></tr>
+        <tr><td>Úlcera Péptica</td><td id="p1-Úlcera_Péptica"></td><td>Úlcera Péptica</td><td id="p2-Úlcera_Péptica"></td></tr>
+        <tr><td>Erradicación de H. Pylori</td><td id="p1-Erradicación_de_H._Pylori"></td><td>Erradicación de H. Pylori</td><td id="p2-Erradicación_de_H._Pylori"></td></tr>
+        <tr><td>Inicio acción</td><td id="p1-Inicio_de_acción"></td><td>Inicio acción</td><td id="p2-Inicio_de_acción"></td></tr>
+	<tr><td>% de tiempo en alcanzar pH mayor a 4</td><td id="p1-%_de_tiempo_en_alcanzar_pH_mayor_a_4"></td><td>% de tiempo en alcanzar pH mayor a 4</td><td id="p2-%_de_tiempo_en_alcanzar_pH_mayor_a_4"></td></tr>
+        <tr><td>Dependencia de alimentos</td><td id="p1-Dependencia_de_alimentos"></td><td>Dependencia de alimentos</td><td id="p2-Dependencia_de_alimentos"></td></tr>
+	<tr><td>Protección en reflujo nocturno</td><td id="p1-Protección_en_reflujo_nocturno"></td><td>Protección en reflujo nocturno</td><td id="p2-Protección_en_reflujo_nocturno"></td></tr>
+	<tr><td>Vida media</td><td id="p1-Vida_media"></td><td>Vida media</td><td id="p2-Vida_media"></td></tr>	
+        <tr><td>Posología</td><td id="p1-Posología"></td><td>Posología</td><td id="p2-Posología"></td></tr>
+      </tbody>
+    </table>
+
+    <table class="contraindications">
+      <thead>
+        <tr>
+          <th>Contraindicaciones Producto 1</th><th></th><th>Contraindicaciones Producto 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="contra1"></td><td bgcolor="#f2f2f2"></td><td id="contra2"></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
+<img src="efectividad-gastro2.png" alt="Girl in a jacket" width="500" height="300" style="display: block; margin: auto;">
+
+
+
+  <script>
+  // Objeto de semáforo (colores): usar claves exactas ("Kicab", "Dexivant", "Nexiummups", "Abcito")
+  const benefitsConfig = {
+    Kicab: {
+      green: ["ERGE", "ERNE", "Úlcera_Péptica", "Erradicación_de_H._Pylori", "Protección_en_reflujo_nocturno", "Posología", "Inicio_de_acción", "%_de_tiempo_en_alcanzar_pH_mayor_a_4", "Dependencia_de_alimentos"],
+      yellow: ["Vida_media"]
+    },
+    Dexivant: {
+      green: ["ERGE", "ERNE"],
+      yellow: ["Inicio_de_acción", "Dependencia_de_alimentos", "%_de_tiempo_en_alcanzar_pH_mayor_a_4", "Posología"],
+      orange: ["Vida_media"]
+    },
+    Nexiummups: {
+      green: ["ERGE", "ERNE", "Úlcera_Péptica", "Erradicación_de_H._Pylori"],
+      yellow: ["Inicio_de_acción", "Dependencia_de_alimentos", "Posología"],
+      orange: ["%_de_tiempo_en_alcanzar_pH_mayor_a_4", "Vida_media"]
+    },
+    Abcito: {
+      green: ["ERGE", "Dependencia_de_alimentos", "Protección_en_reflujo_nocturno", "Vida_media", "Posología"],
+      yellow: ["Inicio_de_acción", "%_de_tiempo_en_alcanzar_pH_mayor_a_4"]
+    }
+  };
+
+  // Descripción de imágenes (opcional)
+  const images = {
+    Kicab: "kicab.png",
+    Dexivant: "dexivant.png",
+    Nexiummups: "nexiummups.png",
+    Abcito: "abcito.png"
+  };
+
+  const links = {
+    Kicab: "https://www.medicamentosplm.com/Home/productos/ki-cab_tabletas/35/101/76942/210",
+    Dexivant: "https://www.medicamentosplm.com/Home/productos/dexivant_capsulas/2415/101/42305/14",
+    Nexiummups: "https://www.medicamentosplm.com/Home/productos/nexium-mups_tabletas/15/101/8897/210",
+    Abcito: "Sin_informacion.html"
+  };
+
+  // Contrarindicaciones: si tienes imágenes, puedes reemplazar los valores
+  const contraindications = {
+    Kicab: "contra-kicab.png",
+    Dexivant: "contra-dexivant.png",
+    Nexiummups: "contra-nexiummups.png",
+    Abcito: "contra-abcito.png"
+  };
+
+  function updateBenefits() {
+    ['product1','product2'].forEach((field,index) => {
+      const prod = document.getElementById(field).value;
+      const imgEl = document.getElementById(`img-${field}`);
+      const linkEl = document.getElementById(`link-${field}`);
+      imgEl.src = images[prod] || "https://via.placeholder.com/150";
+      linkEl.href = links[prod] || "#";
+    });
+
+    // Lista completa de todos los IDs de celdas a limpiar
+    const allFields = [
+"ERGE",
+"ERNE",
+"Inicio_de_acción",
+"Úlcera_Péptica","Erradicación_de_H._Pylori",
+"Protección_en_reflujo_nocturno",
+"Dependencia_de_alimentos",
+"Posología",
+"%_de_tiempo_en_alcanzar_pH_mayor_a_4",
+"Vida_media"
+];
+
+    ['p1','p2'].forEach(prefix => {
+      allFields.forEach(f => {
+        const td = document.getElementById(`${prefix}-${f}`);
+        if (td) td.style.backgroundColor = "";
+      });
+    });
+
+    ['product1','product2'].forEach((field,index) => {
+      const prod = document.getElementById(field).value;
+      const cfg = benefitsConfig[prod];
+      if (cfg) {
+        Object.entries(cfg).forEach(([color,arr]) => {
+          arr.forEach(f => {
+            const td = document.getElementById(`p${index+1}-${f}`);
+            if (td) td.style.backgroundColor = color;
+          });
+        });
+      }
+    });
+  }
+
+  function updateContraindications() {
+    ['product1','product2'].forEach((field,index) => {
+      const prod = document.getElementById(field).value;
+      const cell = document.getElementById(`contra${index+1}`);
+      cell.innerHTML = "";
+      const src = contraindications[prod];
+      if (src) {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `Contraindicaciones de ${prod}`;
+        cell.appendChild(img);
+      }
+    });
+  }
+
+  function solicitarContraseña() {
+    const pwd = [
+"Gsierra123**",
+"gastro2",
+"Gastro2_42*",
+"Gastro2_829**",
+"Gastro2_276//",
+"Gastro2_25..",
+"Gastro2_502#",
+"Gastro2_508$",
+"Gastro2_524??",
+"Gastro2_932_",
+"Gastro2_793-",
+"Gastro2_0x"
+];
+    const intento = prompt("Ingrese la contraseña para acceder:");
+    if (!pwd.includes(intento)) {
+      alert("Contraseña incorrecta. Redirigiendo...");
+      window.location.href = "index.html";
+    } else {
+      alert("Acceso concedido.");
+    }
+  }
+  </script>
+
+</body>
+</html>
